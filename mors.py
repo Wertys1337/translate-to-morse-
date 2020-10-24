@@ -1,18 +1,7 @@
 vvod = input('введите текст >')
-file = open("data.txt", "w")
+file = open("lastTranslate.txt", "w")
 file.write(vvod)
 file.close()
-mass = []
-
-with open("data.txt") as f:
-    i = 0
-    while i < len(vvod):
-        i = i + 1 
-        d = (f.read(1))
-        mass = mass + [d]
-
-    print("".join(mass))
-
 baza = {
 "a": "-·"     ,
 "b": "-···"   ,
@@ -77,25 +66,38 @@ baza = {
 "9": "----·"  ,
 "0": "-----"  ,
 " ": "       ",
-".": ".",
-",": ",",
-"/": "/",
-"?": "?",
-"!": "!",
-";": ";",
+".": "."      ,
+",": ","      ,
+"/": "/"      ,
+"?": "?"      ,  
+"!": "!"      ,
+";": ";"      ,
 ":": ":"
 }
-mass2 = []
+
+mass_eng = []
+
+with open("lastTranslate.txt") as f:
+    i = 0
+    while i < len(vvod):
+        i += 1 
+        d = (f.read(1))
+        mass_eng += [d]
+
+    print("".join(mass_eng))
+
+
+mass_morse = []
 i = 0
 while i < len(vvod):
-	mass2 = mass2 + [baza[mass[i]]]
-
-	i = i + 1 
-result = "   ".join(mass2)
+	mass_morse += [baza[mass_eng[i]]]
+	i += 1
+	
+result = "   ".join(mass_morse)
 print(result)
 
-file = open("data.txt", "w")
-file.write(result)
+file = open("lastTranslate.txt", "a")
+file.write("\n"+ result)
 file.close()
 
 exit = input('нажмите enter для закрытия прграммы')
